@@ -1,0 +1,107 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+  role="img"
+  aria-labelledby="title description"
+>
+  <title id="title">
+    증산 속도 분석 보고서
+  </title>
+
+  <desc id="description">
+    잎과 수분 방울을 표현한 생명과학 실험 보고서 아이콘
+  </desc>
+
+  <rect
+    width="512"
+    height="512"
+    rx="112"
+    fill="#0f766e"
+  />
+
+  <path
+    d="
+      M111 330
+      C111 202 193 120 363 109
+      C357 276 278 373 151 373
+      C130 373 116 355 111 330
+      Z
+    "
+    fill="#dff6f1"
+  />
+
+  <path
+    d="
+      M139 345
+      C196 280 259 229 346 157
+    "
+    fill="none"
+    stroke="#0f766e"
+    stroke-width="24"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="
+      M193 301
+      C170 270 158 239 157 208
+    "
+    fill="none"
+    stroke="#0f766e"
+    stroke-width="16"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="
+      M244 257
+      C220 224 209 190 210 156
+    "
+    fill="none"
+    stroke="#0f766e"
+    stroke-width="16"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="
+      M236 265
+      C276 267 310 255 339 232
+    "
+    fill="none"
+    stroke="#0f766e"
+    stroke-width="16"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="
+      M177 322
+      C211 329 244 323 275 306
+    "
+    fill="none"
+    stroke="#0f766e"
+    stroke-width="16"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="
+      M359 284
+      C359 284 315 338 315 378
+      C315 411 340 434 371 434
+      C402 434 427 411 427 378
+      C427 338 383 284 383 284
+      C376 275 366 275 359 284
+      Z
+    "
+    fill="#ffffff"
+  />
+
+  <circle
+    cx="371"
+    cy="378"
+    r="18"
+    fill="#8fd7cf"
+  />
+</svg>
