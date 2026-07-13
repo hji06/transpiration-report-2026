@@ -1,0 +1,15 @@
+window.APP_CONFIG = Object.freeze({
+  API_URL: "https://script.google.com/macros/s/AKfycbwR3Y535acCGJn4MO-E559lbGnIfWemtCMA9eB7ENVdHPKke2A71LJLmPUP4QoAq3jSIw/exec",
+
+  CLASS_CODE: "BIO2026-TRANSPIRATION",
+
+  APP_VERSION: "1.0.0",
+
+  MAX_IMAGE_BYTES: 1500000,
+
+  MAX_IMAGE_EDGE: 1600,
+
+  IMAGE_QUALITY: 0.78,
+
+  ACTIVE_WINDOW_SECONDS: 60
+});
