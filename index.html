@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="description" content="무선 센서를 활용한 기공 개폐와 증산 속도 분석 학생용 보고서">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>증산 속도 분석 보고서</title>
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">2026 2학년 심화실험 · 생명과학</p>
+      <h1>무선 센서를 활용한 기공 개폐와 증산 속도 분석</h1>
+    </div>
+
+    <div class="status-cluster" aria-live="polite">
+      <span id="networkBadge" class="badge">연결 확인 중</span>
+      <span id="offlineReadyBadge" class="badge neutral">오프라인 준비 중</span>
+      <span id="saveBadge" class="badge neutral">저장 전</span>
+    </div>
+  </header>
+
+  <div class="notice">
+    <strong>자동 저장:</strong>
+    입력 내용과 그래프 사진은 이 기기에 먼저 저장됩니다.
+    피코 Wi-Fi로 전환해 인터넷이 끊겨도 계속 작성할 수 있으며,
+    인터넷에 다시 연결하면 서버 저장을 시도합니다.
+
+    <br>
+
+    <strong>작성 시간:</strong>
+    작성 시간·붙여넣기 횟수는 참고 기록일 뿐,
+    AI 사용 여부를 자동 판정하지 않습니다.
+  </div>
+
+  <main class="app-shell">
+    <aside class="side-nav" aria-label="활동지 페이지 이동">
+      <button
+        type="button"
+        class="nav-step active"
+        data-section="profile"
+      >
+        학생 정보
+      </button>
+
+      <button
+        type="button"
+        class="nav-step"
+        data-section="page9"
+      >
+        9쪽 · 실험 설계
+      </button>
+
+      <button
+        type="button"
+        class="nav-step"
+        data-section="page10"
+      >
+        10쪽 · 1차 결과
+      </button>
+
+      <button
+        type="button"
+        class="nav-step"
+        data-section="page11"
+      >
+        11쪽 · 2차 결과
+      </button>
+
+      <button
+        type="button"
+        class="nav-step"
+        data-section="page12"
+      >
+        12쪽 · 결과 적용
+      </button>
+
+      <button
+        type="button"
+        class="nav-step"
+        data-section="page13"
+      >
+        13쪽 · 예측·심화
+      </button>
+    </aside>
+
+    <form id="reportForm" class="report-form" novalidate>
+
+      <!-- 학생 정보 -->
+      <section
+        id="profile"
+        class="form-section active"
+        data-title="학생 정보"
+      >
+        <div class="section-heading">
+          <span>시작</span>
+          <h2>학생 정보</h2>
+        </div>
+
+        <div class="grid two">
+          <label>
+            학번
+            <input
+              id="studentNo"
+              name="studentNo"
+              inputmode="numeric"
+              autocomplete="off"
+              required
+              placeholder="예: 2101"
+            >
+          </label>
+
+          <label>
+            이름
+            <input
+              id="studentName"
+              name="studentName"
+              autocomplete="name"
+              required
+            >
+          </label>
+
+          <label>
+            모둠
+            <select
+              id="groupNo"
+              name="groupNo"
+              required
+            >
+              <option value="">선택</option>
+              <option value="1">1모둠</option>
+              <option value="2">2모둠</option>
+              <option value="3">3모둠</option>
+              <option value="4">4모둠</option>
+            </select>
+          </label>
+
+          <label>
+            수업 반
+            <input
+              id="className"
+              name="className"
+              autocomplete="off"
+              placeholder="예: 2학년 1반"
+            >
+          </label>
+        </div>
+
+        <div class="callout">
+          같은 디벗에서 다시 열면 저장된 초안이 자동으로 복원됩니다.
+          공용 기기라면 제출 후 아래의
+          <b>이 기기 초안 삭제</b>를 사용하세요.
+        </div>
+      </section>
+
+      <!-- 9쪽 -->
+      <section
+        id="page9"
+        class="form-section"
+        data-title="9쪽 · 2차 실험 설계"
+      >
+        <div class="section-heading">
+          <span>9쪽</span>
+          <h2>2차 실험 설계</h2>
+        </div>
+
+        <label class="question">
+          <b>1.</b>
+          SCD40으로 측정할 수 있는 값을 적어보자.
+
+          <textarea
+            id="q9_1"
+            name="q9_1"
+            rows="3"
+          ></textarea>
+        </label>
+
+        <fieldset class="question">
+          <legend>
+            <b>2.</b>
+            환경 요인을 분류하고,
+            실험에서 조작 가능한 변인을 표시해보자.
+          </legend>
+
+          <div class="table-scroll">
+            <table class="input-table factor-table">
+              <thead>
+                <tr>
+                  <th>환경 요인</th>
+                  <th>증산 촉진</th>
+                  <th>증산 억제</th>
+                  <th>실험에서 조작 가능</th>
+                </tr>
+              </thead>
+
+              <tbody id="factorTableBody"></tbody>
+            </table>
+          </div>
+        </fieldset>
+
+        <label class="question">
+          <b>3.</b>
+          환경 요인이 식물의 증산작용에 미치는 영향에 대한
+          가설을 세워보자.
+
+          <textarea
+            id="q9_3"
+            name="q9_3"
+            rows="4"
+          ></textarea>
+        </label>
+
+        <fieldset class="question">
+          <legend>
+            <b>4.</b>
+            모둠별 실험 조건을 정리해보자.
+          </legend>
+
+          <div class="table-scroll">
+            <table
+              class="input-table compact"
+              id="conditionTable"
+            >
+              <thead>
+                <tr>
+                  <th>실험</th>
+                  <th>조작변인</th>
+                  <th>1모둠</th>
+                  <th>2모둠</th>
+                  <th>3모둠</th>
+                  <th>4모둠</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <th rowspan="2">1차</th>
+                  <th>빛</th>
+                  <td><input name="q9_c_1_light_g1"></td>
+                  <td><input name="q9_c_1_light_g2"></td>
+                  <td><input name="q9_c_1_light_g3"></td>
+                  <td><input name="q9_c_1_light_g4"></td>
+                </tr>
+
+                <tr>
+                  <th>습도</th>
+                  <td><input name="q9_c_1_hum_g1"></td>
+                  <td><input name="q9_c_1_hum_g2"></td>
+                  <td><input name="q9_c_1_hum_g3"></td>
+                  <td><input name="q9_c_1_hum_g4"></td>
+                </tr>
+
+                <tr>
+                  <th rowspan="2">2차</th>
+                  <th>빛</th>
+                  <td><input name="q9_c_2_light_g1"></td>
+                  <td><input name="q9_c_2_light_g2"></td>
+                  <td><input name="q9_c_2_light_g3"></td>
+                  <td><input name="q9_c_2_light_g4"></td>
+                </tr>
+
+                <tr>
+                  <th>습도</th>
+                  <td><input name="q9_c_2_hum_g1"></td>
+                  <td><input name="q9_c_2_hum_g2"></td>
+                  <td><input name="q9_c_2_hum_g3"></td>
+                  <td><input name="q9_c_2_hum_g4"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+
+        <label class="question">
+          <b>5.</b>
+          일정하게 유지해야 하는 통제변인은 무엇일까?
+
+          <textarea
+            id="q9_5"
+            name="q9_5"
+            rows="4"
+          ></textarea>
+        </label>
+
+        <label class="question">
+          <b>6.</b>
+          어떤 환경 요인이 증산을 촉진했다는 것을
+          어떻게 확인할 수 있을까?
+
+          <textarea
+            id="q9_6"
+            name="q9_6"
+            rows="4"
+          ></textarea>
+        </label>
+      </section>
+
+      <!-- 10쪽 -->
+      <section
+        id="page10"
+        class="form-section"
+        data-title="10쪽 · 1차 실험 결과"
+      >
+        <div class="section-heading">
+          <span>10쪽</span>
+          <h2>증산작용 1차 실험 결과</h2>
+        </div>
+
+        <div class="question">
+          <b>1차 실험 결과 그래프</b>
+
+          <p class="hint">
+            그래프를 길게 눌러 복사한 뒤 아래 영역을 눌러 붙여넣거나,
+            ‘사진 선택’으로 갤러리·파일에서 고르세요.
+          </p>
+
+          <div
+            class="image-slot"
+            data-slot="graph1"
+            tabindex="0"
+          >
+            <div class="image-placeholder">
+              <strong>그래프 사진 붙여넣기</strong>
+              <span>
+                탭하여 사진 선택 · 클립보드 붙여넣기 지원
+              </span>
+            </div>
+
+            <img
+              alt="1차 실험 그래프 미리보기"
+              hidden
+            >
+
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+            >
+
+            <button
+              type="button"
+              class="remove-image"
+              hidden
+            >
+              사진 삭제
+            </button>
+          </div>
+        </div>
+
+        <label class="question">
+          <b>1-①.</b>
+          습도가 일정하게 증가하는 구간은?
+          이 자료는 2차 실험 계획에서 어떤 점을 시사하는가?
+
+          <textarea
+            id="q10_1a"
+            name="q10_1a"
+            rows="4"
+          ></textarea>
+        </label>
+
+        <label class="question">
+          <b>1-②.</b>
+          습도가 더 이상 변하지 않는 지점은 언제부터인가?
+          1~4모둠의 최댓값이 동일한가?
+          2차 실험 계획에 어떤 점을 시사하는가?
+
+          <textarea
+            id="q10_1b"
+            name="q10_1b"
+            rows="5"
+          ></textarea>
+        </label>
+
+        <label class="question">
+          <b>1-③.</b>
+          습도가 더 이상 증가하지 않는 이유는 무엇일까?
+
+          <textarea
+            id="q10_1c"
+            name="q10_1c"
+            rows="4"
+          ></textarea>
+        </label>
+
+        <label class="question">
+          <b>2-①.</b>
+          수조 안의 CO₂ 변화를 식물 생리학적으로
+          어떻게 해석할 수 있을까?
+
+          <textarea
+            id="q10_2a"
+            name="q10_2a"
+            rows="5"
+          ></textarea>
+        </label>
+      </section>
+
+      <!-- 11쪽 -->
+      <section
+        id="page11"
+        class="form-section"
+        data-title="11쪽 · 2차 실험 결과"
+      >
+        <div class="section-heading">
+          <span>11쪽</span>
+          <h2>증산작용 2차 실험 결과</h2>
+        </div>
+
+        <details class="optional-block">
+          <summary>
+            2차 실험 그래프도 함께 보관하기(선택)
+          </summary>
+
+          <div
+            class="image-slot"
+            data-slot="graph2"
+            tabindex="0"
+          >
+            <div class="image-placeholder">
+              <strong>2차 실험 그래프</strong>
+              <span>선택 사항</span>
+            </div>
+
+            <img
+              alt="2차 실험 그래프 미리보기"
+              hidden
+            >
+
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+            >
+
+            <button
+              type="button"
+              class="remove-image"
+              hidden
+            >
+              사진 삭제
+            </button>
+          </div>
+        </details>
+
+        <fieldset class="question">
+          <legend>
+            <b>1.</b>
+            실험 결과를 정리해보자.
+          </legend>
+
+          <div class="table-scroll">
+            <table class="input-table result-table">
+              <thead>
+                <tr>
+                  <th>항목</th>
+                  <th>1모둠</th>
+                  <th>2모둠</th>
+                  <th>3모둠</th>
+                  <th>4모둠</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr class="condition-row">
+                  <th>1차 · 빛</th>
+                  <td>O</td>
+                  <td>O</td>
+                  <td>O</td>
+                  <td>O</td>
+                </tr>
+
+                <tr class="condition-row">
+                  <th>1차 · 습도</th>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+
+                <tr>
+                  <th>1차 초기 온도(℃)</th>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g1_first_temp"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g2_first_temp"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g3_first_temp"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g4_first_temp"
+                    >
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>1차 초기 습도(%)</th>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g1_first_hum"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g2_first_hum"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g3_first_hum"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g4_first_hum"
+                    >
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>① 초기 습도 증가 기울기</th>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g1_first_slope"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g2_first_slope"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g3_first_slope"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g4_first_slope"
+                    >
+                  </td>
+                </tr>
+
+                <tr class="condition-row">
+                  <th>2차 · 빛</th>
+                  <td>O</td>
+                  <td>O</td>
+                  <td>X</td>
+                  <td>X</td>
+                </tr>
+
+                <tr class="condition-row">
+                  <th>2차 · 습도</th>
+                  <td>-</td>
+                  <td>고</td>
+                  <td>-</td>
+                  <td>고</td>
+                </tr>
+
+                <tr>
+                  <th>2차 초기 온도(℃)</th>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g1_second_temp"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g2_second_temp"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g3_second_temp"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g4_second_temp"
+                    >
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>2차 초기 습도(%)</th>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g1_second_hum"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g2_second_hum"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g3_second_hum"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.01"
+                      name="q11_g4_second_hum"
+                    >
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>② 초기 습도 증가 기울기</th>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g1_second_slope"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g2_second_slope"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g3_second_slope"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g4_second_slope"
+                    >
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>초기 증산 속도 증가량(②-①)</th>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g1_delta"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g2_delta"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g3_delta"
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      name="q11_g4_delta"
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="hint">
+            초기 습도 증가 기울기:
+            습도가 일정하게 증가하는 구간의 기울기
+          </p>
+        </fieldset>
+
+        <fieldset class="question">
+          <legend>
+            <b>2.</b>
+            모둠별 결과가 의미하는 바를 해석해보자.
+          </legend>
+
+          <div class="group-answers">
+            <label>
+              1모둠
+              <textarea
+                name="q11_interpret_g1"
+                rows="3"
+              ></textarea>
+            </label>
+
+            <label>
+              2모둠
+              <textarea
+                name="q11_interpret_g2"
+                rows="3"
+              ></textarea>
+            </label>
+
+            <label>
+              3모둠
+              <textarea
+                name="q11_interpret_g3"
+                rows="3"
+              ></textarea>
+            </label>
+
+            <label>
+              4모둠
+              <textarea
+                name="q11_interpret_g4"
+                rows="3"
+              ></textarea>
+            </label>
+          </div>
+        </fieldset>
+
+        <label class="question">
+          <b>3.</b>
+          증산작용에 더 큰 영향을 준 요인은 무엇인지 적고,
+          판단 근거가 되는 모둠을 찾아 비교해보자.
+
+          <textarea
+            id="q11_3"
+            name="q11_3"
+            rows="5"
+          ></textarea>
+        </label>
+      </section>
+
+      <!-- 12쪽 -->
+      <section
+        id="page12"
+        class="form-section"
+        data-title="12쪽 · 실험 결과 적용"
+      >
+        <div class="section-heading">
+          <span>12쪽</span>
+          <h2>실험 결과 적용 · 증산작용 조절 이유 분석</h2>
+        </div>
+
+        <article class="source-card">
+          <h3>자료 1</h3>
+
+          <p>
+            한낮의 스마트팜 내부는 빛이 강하고 온도가 높았다.
+            스마트팜 A에서는 온도를 낮추기 위해 환기를 많이 하여
+            내부 습도가 낮아졌고, 증산작용이 과도해졌다.
+            시간이 지나며 잎에서 빠져나가는 물의 양이
+            뿌리 흡수량보다 많아져 잎이 처지고
+            생장과 생산량이 감소했다.
+          </p>
+
+          <p>
+            스마트팜 B에서는 수분 손실을 막기 위해
+            내부 습도를 높게 유지했다.
+            잎 안팎의 수증기 차이가 작아져
+            증산작용이 충분히 일어나지 않았고,
+            작물의 생육과 생산량이 감소했다.
+          </p>
+
+          <h3>자료 2</h3>
+
+          <p>
+            기공이 열리면 CO₂가 들어오고
+            O₂와 수증기가 밖으로 이동한다.
+            기공 개폐는 광합성과 수분 손실 사이의 균형을 조절한다.
+          </p>
+        </article>
+
+        <label class="question">
+          <b>1.</b>
+          스마트팜 A에서 작물 생장이 나빠진 이유는 무엇일까?
+
+          <textarea
+            id="q12_1"
+            name="q12_1"
+            rows="4"
+          ></textarea>
+        </label>
+
+        <label class="question">
+          <b>2.</b>
+          스마트팜 B에서 작물 생장이 나빠진 이유는 무엇일까?
+
+          <textarea
+            id="q12_2"
+            name="q12_2"
+            rows="4"
+          ></textarea>
+        </label>
+
+        <label class="question">
+          <b>3.</b>
+          스마트팜에서 환경 조절을 할 때
+          어떤 점을 고려해야 할까?
+
+          <textarea
+            id="q12_3"
+            name="q12_3"
+            rows="5"
+          ></textarea>
+        </label>
+      </section>
+
+      <!-- 13쪽 -->
+      <section
+        id="page13"
+        class="form-section"
+        data-title="13쪽 · 목표 습도 예측과 개인 탐구"
+      >
+        <div class="section-heading">
+          <span>13쪽</span>
+          <h2>목표 습도 도달 시간 예측하기</h2>
+        </div>
+
+        <fieldset class="question">
+          <legend>
+            <b>1.</b>
+            1차 실험 시간-습도 데이터 중
+            어떤 구간을 사용할까?
+          </legend>
+
+          <div class="grid three">
+            <label>
+              시작(분)
+              <input
+                type="number"
+                min="0"
+                step="0.1"
+                name="q13_range_start"
+              >
+            </label>
+
+            <label>
+              끝(분)
+              <input
+                type="number"
+                min="0"
+                step="0.1"
+                name="q13_range_end"
+              >
+            </label>
+
+            <label>
+              구간 길이(분)
+              <input
+                id="rangeLength"
+                readonly
+                aria-label="선택한 구간 길이"
+              >
+            </label>
+          </div>
+
+          <label>
+            그렇게 생각한 이유
+
+            <textarea
+              name="q13_range_reason"
+              rows="4"
+            ></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset class="question">
+          <legend>
+            <b>2.</b>
+            우리 모둠의 목표 습도를 정해보자.
+          </legend>
+
+          <div class="grid two">
+            <label>
+              목표 습도(%)
+
+              <input
+                type="number"
+                min="0"
+                max="100"
+                step="0.1"
+                name="q13_target_humidity"
+              >
+            </label>
+
+            <label>
+              현재 또는 시작 습도(%)
+
+              <input
+                type="number"
+                min="0"
+                max="100"
+                step="0.1"
+                name="q13_start_humidity"
+              >
+            </label>
+          </div>
+
+          <label>
+            목표 습도를 그렇게 정한 이유
+
+            <textarea
+              name="q13_target_reason"
+              rows="4"
+            ></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset class="question">
+          <legend>
+            <b>3.</b>
+            가상 데이터로 목표 습도 도달 시간을 예측하고
+            환경 조절 필요 시점을 정해보자.
+          </legend>
+
+          <div
+            class="image-slot small"
+            data-slot="graph3"
+            tabindex="0"
+          >
+            <div class="image-placeholder">
+              <strong>회귀 그래프 또는 계산 화면</strong>
+              <span>선택 사항</span>
+            </div>
+
+            <img
+              alt="회귀 그래프 미리보기"
+              hidden
+            >
+
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+            >
+
+            <button
+              type="button"
+              class="remove-image"
+              hidden
+            >
+              사진 삭제
+            </button>
+          </div>
+
+          <div class="grid two">
+            <label>
+              회귀식
+
+              <input
+                name="q13_regression"
+                placeholder="예: y = 0.42x + 68.1"
+              >
+            </label>
+
+            <label>
+              목표 습도 도달 예상 시간(분)
+
+              <input
+                type="number"
+                min="0"
+                step="0.1"
+                name="q13_predicted_minutes"
+              >
+            </label>
+
+            <label>
+              미리 조절할 시간(분)
+
+              <input
+                type="number"
+                min="0"
+                step="0.1"
+                name="q13_control_lead"
+              >
+            </label>
+
+            <label>
+              환경 조절 시작 시점(분)
+
+              <input
+                type="number"
+                min="0"
+                step="0.1"
+                name="q13_control_at"
+              >
+            </label>
+          </div>
+
+          <label>
+            계산 과정과 환경 조절 방법
+
+            <textarea
+              name="q13_prediction_reason"
+              rows="6"
+            ></textarea>
+          </label>
+        </fieldset>
+
+        <div class="section-heading sub">
+          <span>개인</span>
+          <h2>개별 심화 탐구</h2>
+        </div>
+
+        <label class="question">
+          주제
+
+          <input
+            id="inquiryTopic"
+            name="inquiryTopic"
+          >
+        </label>
+
+        <label class="question">
+          탐구 내용
+
+          <textarea
+            id="inquiryContent"
+            name="inquiryContent"
+            rows="10"
+          ></textarea>
+        </label>
+
+        <fieldset class="question ai-box">
+          <legend>AI 사용 기록</legend>
+
+          <p class="hint">
+            AI를 사용했다면 사용 사실과 대화 링크를 남겨주세요.
+            사용했다고 해서 불이익을 주기 위한 항목이 아니라,
+            탐구 과정의 투명성을 확인하기 위한 항목입니다.
+          </p>
+
+          <div class="inline-options">
+            <label>
+              <input
+                type="radio"
+                name="aiUsed"
+                value="no"
+              >
+              사용하지 않음
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="aiUsed"
+                value="yes"
+              >
+              사용함
+            </label>
+          </div>
+
+          <label>
+            어떤 단계에서 어떻게 사용했는가?
+
+            <textarea
+              name="aiUseDescription"
+              rows="3"
+            ></textarea>
+          </label>
+
+          <label>
+            대화 공유 링크
+
+            <input
+              type="url"
+              name="aiLink"
+              inputmode="url"
+              placeholder="https://..."
+            >
+          </label>
+        </fieldset>
+      </section>
+
+      <!-- 하단 버튼 -->
+      <div class="form-actions">
+        <button
+          type="button"
+          id="prevButton"
+          class="secondary"
+        >
+          이전
+        </button>
+
+        <button
+          type="button"
+          id="saveLocalButton"
+          class="secondary"
+        >
+          이 기기에 저장
+        </button>
+
+        <button
+          type="button"
+          id="syncButton"
+        >
+          서버에 중간 저장
+        </button>
+
+        <button
+          type="button"
+          id="nextButton"
+        >
+          다음
+        </button>
+
+        <button
+          type="button"
+          id="pdfButton"
+          class="secondary"
+          hidden
+        >
+          보고서 PDF 다운로드
+        </button>
+
+        <button
+          type="button"
+          id="finalButton"
+          class="danger"
+          hidden
+        >
+          PDF로 최종 제출
+        </button>
+      </div>
+
+      <details class="device-tools">
+        <summary>기기 저장 관리</summary>
+
+        <button
+          type="button"
+          id="deleteDraftButton"
+          class="text-button"
+        >
+          이 기기의 초안과 사진 삭제
+        </button>
+      </details>
+    </form>
+  </main>
+
+  <dialog id="messageDialog">
+    <h2 id="dialogTitle">알림</h2>
+    <p id="dialogMessage"></p>
+
+    <form method="dialog">
+      <button>확인</button>
+    </form>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="db.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+
+  <script src="pdf-report.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
